@@ -1,0 +1,42 @@
+body{
+    background: url(../img/e-voting.jpg) no-repeat center center fixed;
+    background-color: #b8e994;
+    
+}
+
+
+#headerSelection{
+    padding: 5px;
+ }
+ 
+ #headerSection h1{
+     font-family: cursive;
+ }
+ input{
+     padding: 10px;
+     border-radius: 5px;
+ }
+ 
+ #dropbox{
+     padding: 10px;
+     border-radius: 5px;
+     width: 10%;
+ }
+ #backbtn{
+     padding: 5px;
+     border-radius: 5px;
+     background-color: #3498db;
+     color: white;
+     border-radius: 5px;
+     float: left;
+     margin: 10px;
+ }
+ #logoutbtn{
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 5px;
+    float: right;
+    margin: 10px;
+}

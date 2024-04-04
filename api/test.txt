@@ -1,0 +1,67 @@
+<?php
+include("connect.php");
+
+$name = $_POST['name'];
+$mobile = $_POST['mobile'];
+$password = $_POST['password'];
+$cpassword = $_POST['cpassword'];
+$address = $_POST['address'];
+$image = $_FILES['name']['photo'];
+$tmp_name = $_FILES['tmp_name']['photo'];
+$role = $_POST['role'];
+
+if($password == $cpassword){
+move_uploaded_file($tmp_name,"../uploads/$image");
+$insert = mysqli_query($connect, "INSERT INTO user (name, mobile, address, password, photo, role, status, votes) VALUES ('$name', '$mobile', '$address', '$password', '$image', '$role', 0, 0)");
+if($insert){
+    echo '
+    <script>
+        alert("Registration Successfull!!");
+        window.locaton = "../";
+    </script>
+    ';
+}else{
+    echo '
+    <script>
+        alert("Some error occored!");
+        window.location = "../routes/register.html";
+    </script>
+';
+}
+}else{
+    echo '
+    <script>
+        alert("password and Confirm password did not match!");
+        window.location = "../routes/register.html";
+    </script>
+';
+}
+
+?>
+
+
+<?php
+// Check if the file upload field is set in $_FILES array
+if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
+    // Get the temporary file path
+    $tmp_name = $_FILES['profile_image']['tmp_name'];
+
+    // Specify the directory where you want to store the uploaded file
+    $upload_dir = 'path/to/your/upload/directory/';
+
+    // Generate a unique name for the uploaded file to prevent conflicts
+    $image = $upload_dir . uniqid() . '_' . basename($_FILES['profile_image']['name']);
+
+    // Move the uploaded file to the specified directory
+    if (move_uploaded_file($tmp_name, $image)) {
+        // File uploaded successfully
+        echo "File uploaded successfully.";
+    } else {
+        // Failed to move the file
+        echo "Failed to upload file.";
+    }
+} else {
+    // Handle the case where the file upload field is not set or an error occurred
+    echo "Error uploading file.";
+}
+?>
